@@ -21,10 +21,8 @@ workflows:
       - one
           filters:
             branches:
-              only:
-                - insights/release/4.0
+              only: insights/release/4.0
       - two
           filters:
             branches:
-              only:
-                - insights/release/4.0
+              only: insights/release/4.0
