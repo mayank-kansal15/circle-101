@@ -17,9 +17,14 @@ jobs:
 workflows:
   version: 2
   one_and_two:
-    branches:
-      only:
-        - insights/release/4.0
     jobs:
       - one
+          filters:
+          branches:
+            only:
+              - insights/release/4.0
       - two
+          filters:
+            branches:
+              only:
+                - insights/release/4.0
