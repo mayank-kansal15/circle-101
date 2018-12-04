@@ -20,9 +20,9 @@ workflows:
     jobs:
       - one
           filters:
-          branches:
-            only:
-              - insights/release/4.0
+            branches:
+              only:
+                - insights/release/4.0
       - two
           filters:
             branches:
