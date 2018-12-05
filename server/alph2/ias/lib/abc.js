@@ -1,10 +1,17 @@
 /**
- * @api {put} /v1/reports/airings/notify Notify IAS to create scheduled airings report
- * @apiName PutNotifyScheduledReport
- * @apiGroup Airing Schedule
- * @apiParam (Body Object) {String} request-id Request id of the schedule created on TaskR.
- * @apiSuccess (200 Response) {String} msg
- * @apiSuccessExample {json} Success-Response:
- *     200 OK
- *     "Request received."
+ * @api {get} /v1/config Get an IAS config value from ETCD.
+ * @apiName GetConfigValue
+ * @apiGroup General
+ * @apiParam (Query) {String} key Name of the ETCD config key stored under /ias
+ * @apiHeader (Request Header) {String} authorization-token User unique JWT access token
+ * @apiSuccess (200 Response Object) {String} value Strigified value of type like Array, Boolean, etc.
+ * @apiError (404 Response Object) {String} msg
+ * @apiErrorExample {json} Error-Response:
+ *     404 Not Found
+ *     {
+ *       "msg": "Config key missing in query param"
+ *     }
+ *     {
+ *       "msg": "Invalid key"
+ *     }
  */
