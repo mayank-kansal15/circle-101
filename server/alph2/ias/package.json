@@ -1,0 +1,18 @@
+{
+  "name": "IAS",
+  "version": "1.0.0",
+  "description": "Insights Application Server",
+  "main": "../alphmain.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc:build": "apidoc -i lib/ -o docs/",
+    "doc:publish": "Our custom script to publish to docs.alphonso"
+  },
+  "author": "Alphonso Inc.",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "apidoc": "0.17.6",
+    "sinon": "2.0.0-pre"
+  }
+}

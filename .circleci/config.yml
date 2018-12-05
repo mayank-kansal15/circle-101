@@ -1,22 +1,30 @@
 version: 2
 jobs:
-  one:
+  ias_api_doc:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:4.8.2
+    working_directory: ~/project
     steps:
       - checkout
-      - run: echo "A first hello"
-      - run: sleep 25
-  two:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A more familiar hi"
-      - run: sleep 15
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run: cd ~/project/server/alph2/ias && npm install
+      - save_cache:
+          paths:
+            - ~/project/server/alph2/ias/node_modules
+          key: v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
+      - run: cd ~/project/server/alph2/ias && npm run doc:build
+      - run: sudo apt-get update -y && sudo apt-get -y install rsync
+      - run: echo 'apidocs.alphonso.tv,209.240.97.239 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHGfaz2oRpOWY7hths1cG0YKJJIMjv2tm+WsgqmAOUyGeu38vIt4AnwB5xsln1geTnlWlctLLiN1+zSFdqn7E9k=' >> ~/.ssh/known_hosts
+      - run: cd ~/project/server/alph2/ias && rsync -rze ssh docs/ alpha@apidocs.alphonso.tv:/mnt/alpha/apidocs/IAS
 workflows:
   version: 2
-  one_and_two:
+  all_api_docs_jobs:
     jobs:
-      - one
-      - two
+      - ias_api_doc:
+          filters:
+            branches:
+              only: insights/release/4.0
