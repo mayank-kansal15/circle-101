@@ -18,6 +18,7 @@ jobs:
           key: v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
       - run: cd ~/project/server/alph2/ias && npm run doc:build
       - run: sudo apt-get update -y && sudo apt-get -y install rsync
+      - run: echo 'apidocs.alphonso.tv,209.240.97.239 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHGfaz2oRpOWY7hths1cG0YKJJIMjv2tm+WsgqmAOUyGeu38vIt4AnwB5xsln1geTnlWlctLLiN1+zSFdqn7E9k=' >> ~/.ssh/known_hosts
       - run: cd ~/project/server/alph2/ias && rsync -rze ssh docs/ alpha@apidocs.alphonso.tv:/mnt/alpha/apidocs/IAS
 workflows:
   version: 2
