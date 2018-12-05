@@ -2,7 +2,7 @@ version: 2
 jobs:
   ias_api_doc:
     docker:
-      - image: circleci/node:4.8.2
+      - image: 
     working_directory: ~/project
     steps:
       - checkout
