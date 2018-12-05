@@ -17,7 +17,7 @@ jobs:
             - ~/project/server/alph2/ias/node_modules
           key: v1-dependencies-{{ checksum "~/project/server/alph2/ias/package.json" }}
       - run: cd ~/project/server/alph2/ias && npm run doc:build
-      - run: sudo apt install rsync
+      - run: sudo apt-get install rsync
       - run: cd ~/project/server/alph2/ias && rsync -rze ssh docs/ alpha@apidocs.alphonso.tv:/mnt/alpha/apidocs/IAS
 workflows:
   version: 2
