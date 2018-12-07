@@ -1,5 +1,5 @@
 /**
- * @api {get} /v1/config Get an IAS config value from "ETCD" 4.0 modified test 1.
+ * @api {get} /v1/config Get an IAS config value from "ETCD" 4.0 modified test 2.
  * @apiName GetConfigValue
  * @apiGroup General
  * @apiParam (Query) {String} key Name of the ETCD config key stored under /ias
